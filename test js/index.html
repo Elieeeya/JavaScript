@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="choices.min.css">
+    <link rel="stylesheet" href="simplebar.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <section class="container">
+        <!-- Кастомный чекбокс -->
+        <div class="category">
+            <h2 class="category__head">Категории:</h2>
+            <ul class="category__animals">
+                <li class="animals__species">
+                    <label for="species__one">
+                        <input type="checkbox" name="species__one" id="species__one">Динозавры
+                        <span></span>
+                    </label>
+                </li>
+                <li class="animals__species">
+                    <label for="species__two">
+                        <input type="checkbox" name="species__two" id="species__two">Медведи
+                        <span></span>
+                    </label>
+                </li>
+                    <li class="animals__species">
+                        <label for="species__three">
+                            <input type="checkbox" name="species__three" id="species__three">Косули
+                            <span></span>
+                        </label>
+                    </li>
+                    <li class="animals__species">
+                        <label for="species__four">
+                            <input type="checkbox" name="species__four" id="species__four">Лисы
+                            <span></span>
+                        </label>
+                    </li>
+                    <li class="animals__species">
+                        <label for="species__five">
+                            <input type="checkbox" name="species__five" id="species__five">Волки
+                            <span></span>
+                        </label>
+                    </li>
+                    <li class="animals__species">
+                        <label for="species__six">
+                            <input type="checkbox" name="species__six" id="species__six">Олени и лоси
+                            <span></span>
+                        </label>
+                    </li>
+            </ul>
+        </div>
+        <!-- Кастомный селект -->
+        <div class="material">
+            <select name="matter" id="matter">
+                <option value="">Материал</option>
+                <option value="">Древесина</option>
+                <option value="">Металл</option>
+                <option value="">Камень</option>
+                <option value="">Пластик</option>
+                <option value="">Композитный</option>
+                <option value="">Гипс</option>
+            </select>
+        </div>
+        <!-- Карта -->
+        <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU" type="text/javascript"></script>
+        <div id="map"></div>
+        <script type="text/javascript">
+            // Функция ymaps.ready() будет вызвана, когда
+            // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
+            ymaps.ready(init);
+            function init(){
+                // Создание карты.
+                var myMap = new ymaps.Map("map", {
+                    // Координаты центра карты.
+                    // Порядок по умолчанию: «широта, долгота».
+                    // Чтобы не определять координаты центра карты вручную,
+                    // воспользуйтесь инструментом Определение координат.
+                    center: [48.872197, 2.354224],
+                    // Уровень масштабирования. Допустимые значения:
+                    // от 0 (весь мир) до 19.
+                    zoom: 15
+                });
+                // Создание геообъекта с типом точка (метка).
+                    var myGeoObject = new ymaps.GeoObject({
+                    geometry: {
+                    type: "Point", // тип геометрии - точка
+                    coordinates: [48.872197, 2.354224] // координаты точки
+                    }
+                });
+
+                myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+            hintContent: 'Франция, Иль-де-Франс, Париж, X округ Парижа, улица дю Фобур Сен Дени  54',
+            balloonContent: 'Франция, Иль-де-Франс, Париж, X округ Парижа, улица дю Фобур Сен Дени  54'
+        }, {
+            // Опции.
+            // Необходимо указать данный тип макета.
+            iconLayout: 'default#image',
+            // Своё изображение иконки метки.
+            iconImageHref: '/Subtract.svg',
+            // Размеры метки.
+            iconImageSize: [30, 42],
+            // Смещение левого верхнего угла иконки относительно
+            // её "ножки" (точки привязки).
+            iconImageOffset: [-5, -38]
+        }),
+                // Размещение геообъекта на карте.
+                myMap.geoObjects.add(myPlacemark);
+            }
+        </script>
+       <!-- Скролл -->
+       <div class="customSkroll" data-simplebar>
+           <p class="skroll__text">
+            Сложно сказать, почему многие известные
+            личности представлены в исключительно положительном свете. Лишь активно
+            развивающиеся страны третьего мира будут 
+            объективно рассмотрены соответствующими 
+            инстанциями. Мы вынуждены отталкиваться 
+            от того, что высокотехнологичная концепция
+            общественного уклада представляет собой 
+            интересный эксперимент проверки 
+            глубокомысленных рассуждений. Имеется 
+            спорная точка зрения, гласящая примерно 
+            следующее: непосредственные участники
+            технического прогресса освещают чрезвычайно 
+            интересные особенности картины в целом, 
+            однако конкретные выводы, разумеется, 
+            обнародованы. Значимость этих проблем
+            настолько очевидна, что социально-экономическое развитие, 
+            а также свежий взгляд на привычные вещи - безусловно 
+            открывает новые горизонты для 
+            первоочередных требований.
+           </p>
+       </div>
+       <!-- Форма -->
+       <div class="feedback">
+           <form action class="form" novalidate="novalidate" method="POST">
+            <p class="feedback-name__text">Как вас зовут?</p>
+            <input class="feedback__name" type="text" name="Имя*" placeholder="Имя*" data-validate-field="name">
+            <p class="feedback-phone__text">Укажите ваш телефон</p>
+            <input class="feedback__phone" type="tel" name="tel" placeholder="Телефон*" data-validate-field="tel" data-validat-rules="phone">
+            <p class="feedback-email__text">Укажите ваш e-mail</p>
+            <input class="feedback__email" type="email" name="email" placeholder="Email*" data-validate-field="mail">
+            <button class="feedback__button">Заказать</button>
+        </form>
+       </div>
+    <!-- Тултип -->
+    <div class="window">
+        <div class="window__part">
+        <p>
+            Следует отметить, что социально-экономическое развитие способствует повышению качества переосмысления внешнеэкономических политик.
+        </p>
+            <div class="marker"></div>
+                <div class="pupup">
+                    Глава 2, страница 176                 
+            </div>
+        </div>
+    </div>
+    </section>
+    <script src="choices.min.js"></script>
+    <script>
+        const element = document.querySelector('#matter');
+        const choices = new Choices(element, {
+            searchEnabled: false
+            });    
+    </script>
+    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+    <script src="just-validate.min.js"></script>
+    <script src="inputmask.js"></script>
+    <script>
+        var selector = document.querySelector("input[type='tel']");
+        var im = new Inputmask("+7(999) 999-99-99");
+
+        im.mask(selector);
+        
+        new JustValidate('.form', {
+            rules: {
+                name: {
+                    required: true,
+                    minLength: 2,
+                    maxLength: 20
+                },
+                tel: {
+                    required: true,
+                    function: (name, value) => {
+                        const phone = selector.inputmask.unmaskedvalue()
+                        console.log(phone)
+                        return Number(phone) && phone.length === 10
+                    }
+                },
+                mail: {
+                    required: true,
+                    email: true
+                },
+            },
+        });     
+        </script>
+</body>
+</html>
